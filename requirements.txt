@@ -1,0 +1,8 @@
+# Smart Gym CP02 - Dependências Python
+# Instale com: pip install -r requirements.txt
+
+opencv-python>=4.8.0
+mediapipe>=0.10.0
+pyserial>=3.5
+Pillow>=10.0.0
+# sqlite3 já vem embutido no Python
