@@ -21,7 +21,7 @@ O **Smart Gym Station** é um sistema embarcado que simula uma estação de trei
 
 **Fluxo completo:**
 ```
-Cartão RFID → ESP32 → Serial (USB) → Python (db_helper) → SQLite → Tkinter GUI
+Cartão RFID → Arduino Uno → Serial (USB) → Python (db_helper) → SQLite → Tkinter GUI
                                                                    ↘ Câmera + MediaPipe
 ```
 
@@ -33,14 +33,14 @@ Cartão RFID → ESP32 → Serial (USB) → Python (db_helper) → SQLite → Tk
 smart_gym/
 ├── arduino/
 │   └── rfid_reader/
-│       └── rfid_reader.ino       # Sketch ESP32/Arduino — leitura RFID RC522
+│       └── rfid_reader.ino       # Arduino Uno — leitura RFID RC522
 ├── database/
 │   ├── setup_db.py               # Script de criação e seed do banco
 │   └── smart_gym.db              # Banco SQLite gerado após setup
 ├── python/
 │   ├── main_gui.py               # Interface gráfica principal (Tkinter)
 │   ├── db_helper.py              # Funções de acesso ao SQLite
-│   ├── rfid_reader.py            # Leitura serial do Arduino/ESP32
+│   ├── rfid_reader.py            # Leitura serial do Arduino Uno
 │   └── pose_monitor.py           # Captura de câmera + MediaPipe (thread)
 ├── requirements.txt
 └── README.md
@@ -73,7 +73,7 @@ smart_gym/
 
 | Componente | Quantidade |
 |------------|------------|
-| ESP32 DevKit v1 (ou Arduino Uno/Mega) | 1 |
+| Arduino Uno| 1 |
 | Módulo RFID RC522 + cartões/tags | 1 + 2+ |
 | Cabo USB para programação | 1 |
 | Webcam USB (ou câmera embutida) | 1 |
@@ -82,24 +82,24 @@ smart_gym/
 
 ---
 
-## 🔌 Diagrama de Conexões — RC522 ↔ ESP32
+## 🔌 Diagrama de Conexões — RC522 ↔ Arduino Uno
 
 ```
-RC522 Pin  │  ESP32 Pin
------------│-----------
-SDA (SS)   │  GPIO 5
-SCK        │  GPIO 18
-MOSI       │  GPIO 23
-MISO       │  GPIO 19
+RC522 Pin  │  Arduino Uno Pin
+-----------│-----------------
+SDA (SS)   │  Pino 10
+SCK        │  Pino 13
+MOSI       │  Pino 11
+MISO       │  Pino 12
 IRQ        │  (não usado)
 GND        │  GND
-RST        │  GPIO 27
+RST        │  Pino 9
 3.3V       │  3.3V
 ```
 
 > ⚠️ **Atenção:** O RC522 opera em **3.3 V**. Não conecte ao pino de 5 V.
 
-Diagrama visual: [Wokwi Simulation Link](https://wokwi.com) *(substituir pelo link real)*
+Diagrama visual: [Wokwi Simulation Link](https://wokwi.com/projects/463578516384126977)
 
 ---
 
@@ -156,7 +156,7 @@ Isso criará o arquivo `database/smart_gym.db` com 5 alunos de exemplo.
 ### 5. Grave o sketch no Arduino/ESP32
 - Abra `arduino/rfid_reader/rfid_reader.ino` na Arduino IDE
 - Instale a biblioteca **MFRC522** via *Sketch → Incluir Biblioteca → Gerenciar Bibliotecas*
-- Selecione a placa correta (*ESP32 Dev Module* ou *Arduino Uno*)
+- Selecione a placa correta (*Arduino Uno*)
 - Faça o upload
 
 ### 6. Execute a interface gráfica
