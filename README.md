@@ -183,13 +183,7 @@ python main_gui.py
 
 ## 🎬 Vídeo Demonstrativo
 
-🔗 [Link do vídeo](https://youtu.be/XXXXXXX) *(substituir pelo link real)*
-
-**Conteúdo do vídeo (≤ 3 min):**
-1. Contextualização do problema (Smart Gym)
-2. Aproximação do cartão → identificação na interface
-3. Câmera ativa com esqueleto MediaPipe
-4. Registro de repetições e log no banco de dados
+🔗 [Link do vídeo](https://www.youtube.com/watch?v=QVYUDBO_6_U)
 
 ---
 
