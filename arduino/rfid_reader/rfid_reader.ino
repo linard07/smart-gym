@@ -23,8 +23,8 @@
 #include <MFRC522.h>
 
 // Pinos do RC522
-#define SS_PIN  5
-#define RST_PIN 27
+#define SS_PIN  10
+#define RST_PIN 9
 
 MFRC522 rfid(SS_PIN, RST_PIN);
 
